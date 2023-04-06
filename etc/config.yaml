@@ -1,3 +1,9 @@
 MS:
-  name: users
-  address: 0.0.0.0:50051
+  Name: users
+  Address: 0.0.0.0:50051
+  HTTPAddress: 0.0.0.0:50052
+DB:
+  DriverName: pgx
+  DSN: postgres://postgres:password@localhost:5433/ms_users?sslmode=disable
+  MaxIdleConns: 10
+  MaxOpenConns: 10

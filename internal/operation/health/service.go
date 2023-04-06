@@ -1,13 +1,21 @@
 package health
 
-import "context"
+import (
+	"context"
 
-type Service struct{}
+	"github.com/igomonov88/ms-users/internal/storage"
+)
 
-func NewService() *Service {
-	return &Service{}
+type Service struct {
+	storage *storage.Service
 }
 
-func (s *Service) CheckHealth(ctx context.Context) error {
-	return nil
+func NewService(storage *storage.Service) *Service {
+	return &Service{
+		storage: storage,
+	}
+}
+
+func (s *Service) HealthCheck(ctx context.Context) error {
+	return s.storage.Health.Ping(ctx)
 }

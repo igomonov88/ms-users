@@ -13,13 +13,13 @@ type Service struct {
 	logger *zap.SugaredLogger
 }
 
-func (s *Service) CheckHealth(ctx context.Context) error {
-	return s.op.Health.CheckHealth(ctx)
-}
-
 func NewService(op *operation.Service, logger *zap.SugaredLogger) *Service {
 	return &Service{
 		op:     op,
 		logger: logger,
 	}
+}
+
+func (s *Service) HealthCheck(ctx context.Context) error {
+	return s.op.Health.HealthCheck(ctx)
 }

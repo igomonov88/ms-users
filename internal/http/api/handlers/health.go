@@ -28,7 +28,7 @@ func (h HealthHandler) RegisterRoutes(router chi.Router) {
 }
 
 func (h HealthHandler) checkHealth(w http.ResponseWriter, r *http.Request) {
-	if err := h.service.CheckHealth(r.Context()); err != nil {
+	if err := h.service.HealthCheck(r.Context()); err != nil {
 		h.logger.Errorw("health check failed", "error", err)
 		render.Render(w, r, contract.ErrorInternal)
 		return
